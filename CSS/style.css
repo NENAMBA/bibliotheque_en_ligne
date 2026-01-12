@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    
+    margin: 10px;
+    background: linear-gradient(to bottom, #8B4513, #D2691E);
+    color: white;
+
+}
+
+.livre-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 50px;
+    margin: 20px;
+}
+
+.livre-card {
+    padding-bottom: 2px;
+    background: white;
+    color: black;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    /* box-shadow:0 4px 8px  rgba(0, 0, 0, 0.5); */
+
+}
+
+.btn-livre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    /* background: white; */
+}
+
+.btn-delete {
+
+    color: white;
+    border: none;
+
+
+
+}
+
+.btn-modifier {
+    color: white;
+    border: none;
+
+
+
+
+}
+
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px;
+    background: url("../images/fontecran.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.inscrit {
+    margin: 50px;
+
+}
+
+.inscrit h2 {
+    padding-bottom: 50px;
+    font-weight: bold;
+}
+
+
+
+
+.inscrit p {
+    
+    font-size:smaller;
+    color: white;
+    padding-bottom: 40px;
+
+}
+
+.inscrit button {
+    white-space: nowrap;
+    padding: 15px 30px;
+    margin: 40px;
+    border-radius: 5px;
+}
+
+.btn-premier {
+    background: black;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.btn-seconde {
+    background: linear-gradient(rgb(248, 173, 10));
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+
+}
+
+a {
+    font-size: medium;
+    color: white;
+    text-decoration: none;
+}
+
+.form-input h1 {
+    padding: 10px 50px;
+    margin: 15px;
+    color:white ;
+    border: transparent blue;
+    border-radius: 10px;
+    background:orange;
+    box-shadow: 10px 10px 16px blue;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    gap: 50px;
+    padding: 4px;
+    background: navy;
+    
+
+}
+
+
+
+.ajout-form h1 {
+    border: transparent blue;
+    background: orange;
+    padding: 10px 100px;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0 14px 12px black;
+}
+
+.ajout-form {
+    background: navy;
+    color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 50px;
+    margin: 20%;
+    text-align: center;
+    border: solid black;
+    border-radius: 55px;
+
+
+}
+
+
+.form-control {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: transparent;
+    border-radius: 5px;
+}
+
+div.floating-form {
+    font-size: 30px;
+    font-weight: bold;
+
+
+
+}
+
+
+
+
+
+
+.input-box label {
+
+    font-size: 25px;
+    font-weight: 600;
+    margin-right: 20px;
+
+}
+
+
+
+
+.btn {
+
+
+    padding: 20px 50px;
+    background: orange;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 12px 12px black;
+
+}
+
+
+
+
+.btn:hover {
+    background: #112f2f;
+}
+
+
+figure img {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 12px 6px 0.8;
+}
+
+.livres {
+
+    border: 1px solid black;
+    border-radius: 10px;
+    background: navy;
+
+}
+.search-bar h2 {
+    margin-bottom: 20px;
+}
+.search-bar{
+    margin: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.search-bar input[type="text"] {
+    padding:10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.search-bar button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 8px black;
+
+}
+.search-bar button:hover {
+    background-color: #112f2f;
+}

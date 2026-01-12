@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+
+    
+        
+
+        <form class="ajout-form" action="./traitement/traitement_livre.php" method="GET">
+            <h1>Ajouter un livre</h1>
+
+            <div class="floating-form">
+                <label for="titre">Titre:</label>
+            <input class="form-control" type="text" id="titre" name="titre" required>
+
+            </div>
+           <div class="floating-form">
+             <label for="auteur">Auteur:</label>
+            <input  class="form-control"   type="text" id="auteur" name="auteur" required>
+           </div>
+
+           <div class="floating-form">
+             <label for="description">Description:</label>
+            <input class="form-control" type="text" id="description" name="description"required>
+
+           </div>
+           <div class="floating-form">
+             <label for="maison_edition">Maison Edition:</label>
+            <input class="form-control" type="text" id="maison_edition" name="maison_edition" required>
+
+           </div>
+            <div class="floating-form">
+                <label for="date_publication">Nombre Exemplaires:</label>
+            <input class="form-control" type="text" id="nombre_exemplair" name="nombre_exemplair" required>
+
+            </div>
+            <button type="submit" class="btn">Ajouter</button>
+            <p>Dav&copy;2025-2026</p>
+
+        </form>
+    </div>
+
+
+
+
+</body>
+
+</html>

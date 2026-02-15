@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - BiblioApp</title>
+    <link rel="stylesheet" href="CSS/pro-dark.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">BiblioApp</div>
+        <nav class="nav">
+            <a href="index.php" style="color: var(--text-primary); text-decoration: none;">← Retour</a>
+        </nav>
+    </div>
+</header>
+
+<!-- CONNEXION FORM -->
+<div class="container">
+    <div class="form-container">
+        <h1 class="form-title">Se Connecter</h1>
+        
+        <?php
+        // Afficher messages si présents
+        if(isset($_GET['success']) && $_GET['success'] === 'registered'):
+        ?>
+            <div class="message success">
+                ✓ Inscription réussie! Connectez-vous à votre compte.
+            </div>
+        <?php endif; ?>
+        
+        <?php
+        if(isset($_GET['error'])):
+            $errors = [
+                'invalid' => '✗ Email ou mot de passe incorrect',
+                'missing' => '✗ Veuillez remplir tous les champs',
+                'expired' => '✗ Votre session a expiré'
+            ];
+            $error_msg = $errors[$_GET['error']] ?? '✗ Une erreur est survenue';
+        ?>
+            <div class="message error">
+                <?php echo htmlspecialchars($error_msg); ?>
+            </div>
+        <?php endif; ?>
+        
+        <form method="POST" action="traitement/traitement_login.php" id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="votre@email.com"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Mot de Passe</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+            
+            <div class="form-group checkbox">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Se souvenir de moi</label>
+            </div>
+            
+            <button type="submit" class="btn-submit">Connexion</button>
+        </form>
+        
+        <div class="form-link">
+            Pas encore de compte? <a href="inscription.html">S'inscrire ici</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <p class="footer-text">© 2026 BiblioApp - Bibliothèque Digitale Professionnelle</p>
+    </div>
+</footer>
+
+<script>
+    // Nettoyer les paramètres URL après 5 secondes
+    setTimeout(() => {
+        window.history.replaceState({}, document.title, 'connexion.html');
+    }, 5000);
+</script>
+
+</body>
+</html>

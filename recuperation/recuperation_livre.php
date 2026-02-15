@@ -1,14 +1,6 @@
 <?php
-
-$conn = connectDB();
-
-$sql = "SELECT * FROM livres ";
-
-$result = mysqli_query($conn, $sql);
-
-
-
-
+// Ce fichier n'est plus utilisé. La récupération des livres est faite directement dans index.php
+// pour optimiser les performances et la structure du code.
 ?>
 
 
@@ -37,6 +29,9 @@ if($result && $result->num_rows > 0){
          <img src="./images/book success.jpg"  height="220px"  alt="image du livre">
          <p> <?php echo $row['titre']."<br>"; ?>  </p>
          <p> <?php echo $row['auteur']."<br>"; ?>  </p>
+         <!-- <p> <?php echo $row['description']."<br>"; ?>  </p> -->
+
+         <button type="button" class="detail-livre"> <a href="details.php"> Détails</a></button>
     </div>
        
 

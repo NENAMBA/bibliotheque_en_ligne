@@ -1,51 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire d'inscription</title>
-    <link  rel="stylesheet" href="./CSS/style.css">
-
+    <title>Inscription - BiblioApp</title>
+    <link rel="stylesheet" href="CSS/pro-dark.css">
 </head>
 <body>
 
-<!-- <div class="form-input"> -->
-
-
-
-
-
-<form   class="form-input"   action="./traitement/traitement_inscripton.php" method="GET">
-    <h1>Inscrivez-vous !</h1>
-    <div class="input-box">
-<label for= "nom">Nom :</label>
-    <input  class="form-control"  type="text" name="nom" id="nom" required>
-
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">BiblioApp</div>
+        <nav class="nav">
+            <a href="index.php" style="color: var(--text-primary); text-decoration: none;">← Retour</a>
+        </nav>
     </div>
-    <div class="input-box">
-    <label for= "Prenom">Prenom :</label>
-    <input class="form-control"   type="text" name="prenom" id="prenom" required>
+</header>
 
+<!-- INSCRIPTION FORM -->
+<div class="container">
+    <div class="form-container">
+        <h1 class="form-title">S'Inscrire</h1>
+        
+        <!-- <?php
+        // Afficher message erreur si présent
+        if(isset($_GET['error'])):
+            $errors = [
+                'email_exists' => '✗ Cet email est déjà utilisé',
+                'weak_password' => '✗ Le mot de passe ne respecte pas les conditions',
+                'passwords_match' => '✗ Les mots de passe ne correspondent pas',
+                'missing' => '✗ Veuillez remplir tous les champs',
+                'invalid_email' => '✗ Email invalide'
+            ];
+            $error_msg = $errors[$_GET['error']] ?? '✗ Une erreur est survenue';
+        ?>
+            <div class="message error">
+                <?php echo htmlspecialchars($error_msg); ?>
+            </div>
+        <?php endif; ?> -->
+        
+        <form method="POST" action="traitement/traitement_inscription.php" id="registerForm">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input 
+                    type="text" 
+                    id="nom" 
+                    name="nom"
+                    placeholder="Votre nom"
+                    minlength="2"
+                    maxlength="100"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input 
+                    type="text" 
+                    id="prenom" 
+                    name="prenom"
+                    placeholder="Votre prénom"
+                    minlength="2"
+                    maxlength="100"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="votre@email.com"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Mot de Passe</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password"
+                    placeholder="••••••••"
+                    minlength="8"
+                    required
+                >
+                
+                <div class="password-requirements">
+                    <div class="requirement" id="req-length">Au moins 8 caractères</div>
+                    <div class="requirement" id="req-upper">Au moins 1 majuscule</div>
+                    <div class="requirement" id="req-digit">Au moins 1 chiffre</div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password-confirm">Confirmer le Mot de Passe</label>
+                <input 
+                    type="password" 
+                    id="password-confirm" 
+                    name="password_confirm"
+                    placeholder="••••••••"
+                    required
+                >
+            </div>
+            
+            <div class="form-group checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">J'accepte les conditions d'utilisation</label>
+            </div>
+            
+            <button type="submit" class="btn-submit" id="submitBtn" disabled>S'Inscrire</button>
+        </form>
+        
+        <div class="form-link">
+            Déjà un compte? <a href="connexion.html">Se connecter ici</a>
+        </div>
     </div>
+</div>
 
-    <div class="input-box">
-    <label for= "email">Email:</label>
-    <input  class="form-control"    type="email" name="email" id="email" required>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <p class="footer-text">© 2026 BiblioApp - Bibliothèque Digitale Professionnelle</p>
     </div>
-<button type="submit" class="btn" >Envoyer</button>
+</footer>
 
-</form>
-
-
-
-
-
-
-
-
-
-
-
+<script>
+    const passwordInput = document.getElementById('password');
+    const passwordConfirmInput = document.getElementById('password-confirm');
+    const reqLength = document.getElementById('req-length');
+    const reqUpper = document.getElementById('req-upper');
+    const reqDigit = document.getElementById('req-digit');
+    const termsCheckbox = document.getElementById('terms');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('registerForm');
     
+    // Validation du mot de passe en temps réel
+    passwordInput.addEventListener('input', validatePassword);
+    passwordConfirmInput.addEventListener('input', validatePassword);
+    termsCheckbox.addEventListener('change', updateSubmitButton);
+    
+    function validatePassword() {
+        const password = passwordInput.value;
+        const confirmPassword = passwordConfirmInput.value;
+        
+        // Vérifier la longueur
+        if(password.length >= 8) {
+            reqLength.classList.add('met');
+        } else {
+            reqLength.classList.remove('met');
+        }
+        
+        // Vérifier majuscule
+        if(/[A-Z]/.test(password)) {
+            reqUpper.classList.add('met');
+        } else {
+            reqUpper.classList.remove('met');
+        }
+        
+        // Vérifier chiffre
+        if(/\d/.test(password)) {
+            reqDigit.classList.add('met');
+        } else {
+            reqDigit.classList.remove('met');
+        }
+        
+        updateSubmitButton();
+    }
+    
+    function updateSubmitButton() {
+        const isPasswordValid = reqLength.classList.contains('met') && 
+                               reqUpper.classList.contains('met') && 
+                               reqDigit.classList.contains('met');
+        const passwordsMatch = passwordInput.value === passwordConfirmInput.value && 
+                              passwordInput.value !== '';
+        const termsAccepted = termsCheckbox.checked;
+        
+        if(isPasswordValid && passwordsMatch && termsAccepted) {
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
+        }
+    }
+    
+    // Validation au submit
+    form.addEventListener('submit', function(e) {
+        if(passwordInput.value !== passwordConfirmInput.value) {
+            e.preventDefault();
+            alert('Les mots de passe ne correspondent pas!');
+            return;
+        }
+    });
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+

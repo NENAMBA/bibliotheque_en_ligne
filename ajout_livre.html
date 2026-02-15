@@ -1,55 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+    <title>Ajouter un Livre - BiblioApp</title>
+    <link rel="stylesheet" href="CSS/pro-dark.css">
 </head>
-
 <body>
 
-    
-        
-
-        <form class="ajout-form" action="./traitement/traitement_livre.php" method="GET">
-            <h1>Ajouter un livre</h1>
-
-            <div class="floating-form">
-                <label for="titre">Titre:</label>
-            <input class="form-control" type="text" id="titre" name="titre" required>
-
-            </div>
-           <div class="floating-form">
-             <label for="auteur">Auteur:</label>
-            <input  class="form-control"   type="text" id="auteur" name="auteur" required>
-           </div>
-
-           <div class="floating-form">
-             <label for="description">Description:</label>
-            <input class="form-control" type="text" id="description" name="description"required>
-
-           </div>
-           <div class="floating-form">
-             <label for="maison_edition">Maison Edition:</label>
-            <input class="form-control" type="text" id="maison_edition" name="maison_edition" required>
-
-           </div>
-            <div class="floating-form">
-                <label for="date_publication">Nombre Exemplaires:</label>
-            <input class="form-control" type="text" id="nombre_exemplair" name="nombre_exemplair" required>
-
-            </div>
-            <button type="submit" class="btn">Ajouter</button>
-            <p>Dav&copy;2025-2026</p>
-
-        </form>
+<!-- HEADER -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">BiblioApp</div>
+        <nav class="nav">
+            <a href="index.php" style="color: var(--text-primary); text-decoration: none;">← Retour</a>
+        </nav>
     </div>
+</header>
 
+<!-- AJOUTER LIVRE FORM -->
+<div class="container">
+    <div class="form-container" style="max-width: 600px;">
+        <h1 class="form-title">📚 Ajouter un Livre</h1>
+        
+        <!-- <?php
+        // Afficher messages si présents (PHP side)
+        if(isset($_GET['success']) && $_GET['success'] === 'book_added'):
+        ?>
+            <div class="message success">
+                ✓ Livre ajouté avec succès!
+            </div>
+        <?php endif; ?>
+        
+        <?php
+        if(isset($_GET['error'])):
+            $errors = [
+                'invalid_file' => '✗ Type de fichier invalide',
+                'file_too_large' => '✗ Le fichier est trop volumineux (max 5MB)',
+                'missing' => '✗ Veuillez remplir tous les champs',
+                'upload_failed' => '✗ Erreur lors de l\'upload'
+            ];
+            $error_msg = $errors[$_GET['error']] ?? '✗ Une erreur est survenue';
+        ?>
+            <div class="message error">
+                <?php echo htmlspecialchars($error_msg); ?>
+            </div>
+        <?php endif; ?> -->
+        
+        <form method="POST" action="traitement/traitement_livre.php" enctype="multipart/form-data" id="addBookForm">
+            
+            <!-- Titre -->
+            <div class="form-group">
+                <label for="titre">Titre *</label>
+                <input 
+                    type="text" 
+                    id="titre" 
+                    name="titre"
+                    placeholder="Titre du livre"
+                    maxlength="255"
+                    required
+                >
+            </div>
+            
+            <!-- Auteur -->
+            <div class="form-group">
+                <label for="auteur">Auteur *</label>
+                <input 
+                    type="text" 
+                    id="auteur" 
+                    name="auteur"
+                    placeholder="Nom de l'auteur"
+                    maxlength="255"
+                    required
+                >
+            </div>
+            
+            <!-- Genre -->
+            <div class="form-group">
+                <label for="genre">Genre *</label>
+                <input 
+                    type="text" 
+                    id="genre" 
+                    name="genre"
+                    placeholder="Fiction, Science, Histoire..."
+                    maxlength="100"
+                    required
+                >
+            </div>
+            
+            <!-- Maison d'édition -->
+            <div class="form-group">
+                <label for="maison_edition">Maison d'Édition</label>
+                <input 
+                    type="text" 
+                    id="maison_edition" 
+                    name="maison_edition"
+                    placeholder="Ex: Gallimard"
+                    maxlength="255"
+                >
+            </div>
+            
+            <!-- ISBN -->
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input 
+                    type="text" 
+                    id="isbn" 
+                    name="isbn"
+                    placeholder="978-3-16-148410-0"
+                    maxlength="20"
+                >
+            </div>
+            
+            <!-- Date de Publication -->
+            <div class="form-group">
+                <label for="date_publication">Date de Publication</label>
+                <input 
+                    type="date" 
+                    id="date_publication" 
+                    name="date_publication"
+                >
+            </div>
+            
+            <!-- Nombre d'exemplaires -->
+            <div class="form-group">
+                <label for="nombre_exemplair">Nombre d'Exemplaires</label>
+                <input 
+                    type="number" 
+                    id="nombre_exemplair" 
+                    name="nombre_exemplair"
+                    min="1"
+                    value="1"
+                >
+            </div>
+            
+            <!-- Prix -->
+            <div class="form-group">
+                <label for="prix">Prix (€)</label>
+                <input 
+                    type="number" 
+                    id="prix" 
+                    name="prix"
+                    step="0.01"
+                    min="0"
+                    placeholder="0.00"
+                >
+            </div>
+            
+            <!-- Description -->
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea 
+                    id="description" 
+                    name="description"
+                    placeholder="Résumé ou description du livre..."
+                    maxlength="1000"
+                ></textarea>
+            </div>
+            
+            <!-- Image de Couverture -->
+            <div class="form-group">
+                <label for="image_couverture">Image de Couverture (JPG, PNG, WebP - Max 5MB)</label>
+                <input 
+                    type="file" 
+                    id="image_couverture" 
+                    name="image_couverture"
+                    accept=".jpg,.jpeg,.png,.webp"
+                >
+                <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                    📸 Format: JPG, PNG ou WebP | Taille: max 5MB
+                </small>
+            </div>
+            
+            <button type="submit" class="btn-submit">📚 Ajouter le Livre</button>
+        </form>
+        
+        <div class="form-link">
+            <a href="index.php">← Retour à l'accueil</a>
+        </div>
+    </div>
+</div>
 
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <p class="footer-text">© 2026 BiblioApp - Bibliothèque Digitale Professionnelle</p>
+    </div>
+</footer>
 
+<script>
+    // Validation du fichier image
+    const fileInput = document.getElementById('image_couverture');
+    const submitBtn = document.getElementById('addBookForm');
+    
+    fileInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if(file) {
+            // Vérifier la taille (5MB = 5242880 bytes)
+            if(file.size > 5242880) {
+                alert('Le fichier est trop volumineux! Maximum 5MB.');
+                this.value = '';
+                return;
+            }
+            
+            // Vérifier le type MIME
+            const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            if(!validTypes.includes(file.type)) {
+                alert('Format non autorisé! Utilisez JPG, PNG ou WebP.');
+                this.value = '';
+                return;
+            }
+        }
+    });
+    
+    // Nettoyer les paramètres URL après 5 secondes
+    setTimeout(() => {
+        window.history.replaceState({}, document.title, 'ajout_livre.html');
+    }, 5000);
+</script>
 
 </body>
-
 </html>

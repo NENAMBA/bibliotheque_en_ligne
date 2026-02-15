@@ -106,6 +106,16 @@ body {
     background: black;
     color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.btn-premary {
+    background: orange;
+    color: white;
+    border: none;
     padding: 15px 30px;
     border-radius: 5px;
     cursor: pointer;
@@ -122,6 +132,20 @@ body {
     cursor: pointer;
     font-weight: bold;
     white-space: nowrap;
+    margin-left: 500px;
+    margin-top: 50px;
+    
+    
+
+}
+.detail-livre{
+    padding: 5px 10px;
+    font-size: 15px;
+    font-style: italic;
+    cursor: pointer;
+    color:black;
+background: #112f2f;
+    border-radius: 50px;
 
 }
 
@@ -198,12 +222,6 @@ div.floating-form {
 
 
 }
-
-
-
-
-
-
 .input-box label {
 
     font-size: 25px;
@@ -228,10 +246,6 @@ div.floating-form {
     box-shadow: 0 12px 12px black;
 
 }
-
-
-
-
 .btn:hover {
     background: #112f2f;
 }
@@ -257,6 +271,7 @@ figure img {
     margin: 10px;
     text-align: center;
     margin-bottom: 20px;
+    
 }
 .search-bar input[type="text"] {
     padding:10px;
@@ -270,9 +285,33 @@ figure img {
     background-color: orange;
     color: white;
     cursor: pointer;
-    box-shadow: 0 8px 8px black;
+    box-shadow: 0 8px 8px black; 
+    transition: 0.5s;
 
 }
 .search-bar button:hover {
     background-color: #112f2f;
+    transform: translateY(-10px);
+    
 }
+.header-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.logo{
+    font-weight: lighter;
+    cursor: pointer;
+    display: flex;
+    
+}
+ul {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+
